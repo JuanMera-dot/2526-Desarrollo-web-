@@ -1,0 +1,119 @@
+/* RESET BASICO */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #333333;
+    line-height: 1.6;
+}
+
+/* ENCABEZADO SIMPLE Y CENTRADO */
+header {
+    background-color: #000000; /* Fondo negro /
+    color: #ffffff;            /* Texto blanco */
+    padding: 40px 20px;
+    text-align: center;        /* ESTO CENTRA EL TÍTULO */
+}
+
+h1 {
+    margin: 0;
+    font-size: 3em;           /* Letra grande */
+    letter-spacing: 5px;      /* Espacio entre letras para estilo moderno */
+    text-transform: uppercase;
+}
+
+/* NAVEGACIÓN */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
+    color: #bbbbbb;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+nav a:hover {
+    color: #ffffff; /* Se vuelve blanco al pasar el mouse */
+}
+
+/* CUERPO PRINCIPAL */
+main {
+    max-width: 800px;
+    margin: 40px auto; /* Centrado en la pantalla */
+    padding: 0 20px;
+}
+
+/* SECCIONES Y TÍTULOS */
+section {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #eee; /* Línea divisoria  */
+    padding-bottom: 20px;
+}
+
+h2 {
+    font-size: 2em;
+    color: #000;
+    border-left: 5px solid #000; 
+    padding-left: 15px;
+}
+
+/* TABLA MINIMALISTA */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4; /* Gris muy claro */
+    font-weight: bold;
+}
+
+/* FORMULARIO SIMPLE */
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+}
+
+button {
+    background-color: #000;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #444; /* Gris oscuro al pasar el mouse */
+}
+
+/* PIE DE PÁGINA */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    font-size: 0.9em;
+    color: #666;
+}
