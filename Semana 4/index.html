@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea de Tecnología - Mi Sitio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Mi Pagina Tech</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav01">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav01">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tecnología</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="text-center">Bienvenido a mi sitio de Tecnología</h1>
+        <hr>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="assets/img/img1.jpg" class="card-img-top img-fluid" alt="Hardware">
+                    <div class="card-body">
+                        <h3>Hardware</h3>
+                        <p>Partes físicas de la computadora como el teclado o mouse.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="assets/img/img2.jpg" class="card-img-top img-fluid" alt="Software">
+                    <div class="card-body">
+                        <h3>Software</h3>
+                        <p>Los programas que usamos como Windows o las aplicaciones.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="assets/img/img3.jpg" class="card-img-top img-fluid" alt="Redes">
+                    <div class="card-body">
+                        <h3>Redes</h3>
+                        <p>Conexión de internet y cables para compartir información.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 mb-5">
+            <button class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#masInfo">
+                Presiona para más info
+            </button>
+            <div id="masInfo" class="collapse mt-2 p-3 border">
+                Esta página fue creada para la clase de tecnología usando Bootstrap 5.
+            </div>
+        </div>
+
+        <div class="bg-light p-4 rounded mb-5">
+            <h3>Contáctame</h3>
+            <form>
+                <div class="mb-3">
+                    <label>Nombre:</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Email:</label>
+                    <input type="email" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Comentario:</label>
+                    <textarea class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer py-3 bg-light text-center">
+        <p>Tarea Realizada - 2025</p>
+        <a href="#">Link 1</a> | <a href="#">Link 2</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

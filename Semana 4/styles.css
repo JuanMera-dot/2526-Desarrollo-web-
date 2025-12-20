@@ -1,0 +1,29 @@
+/* Color naranja pedido por el profe */
+.btn-primary {
+    background-color: #ff5733 !important;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #d14426 !important;
+    transform: scale(1.02); /* Animación simple */
+}
+
+/* Bordes para que se note el estilo */
+.card {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+/* Media query para pantallas pequeñas (celulares) */
+@media (max-width: 600px) {
+    h1 {
+        color: #ff5733; /* El título cambia de color en móvil */
+        font-size: 24px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+}
