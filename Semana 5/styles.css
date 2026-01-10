@@ -1,0 +1,26 @@
+/* ... estilos generales omitidos para enfoque en lo importante ... */
+
+/* REQUISITO: Usar Grid o Flex */
+.galeria-container {
+    display: flex;       /* Activa el modelo flexible */
+    flex-wrap: wrap;     /* Si no caben más fotos en la fila, baja a la siguiente */
+    gap: 15px;           /* Espacio entre fotos */
+    justify-content: center; /* Centra todo el grupo de fotos */
+}
+
+/* Estilo base de todas las imágenes */
+.galeria-container img {
+    height: 150px;
+    object-fit: cover;   /* Evita que la foto se deforme o estire */
+    cursor: pointer;     /* Cambia el mouse a una manita para indicar que es clicable */
+    
+    border: 5px solid transparent; 
+    transition: all 0.3s ease; /* Suaviza el cambio de borde y tamaño */
+}
+
+/* ESTADO SELECCIONADO:*/
+.galeria-container img.seleccionada {
+    border-color: #007bff;   /* El borde transparente se vuelve azul */
+    transform: scale(1.1);   /* La imagen crece un 10% */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Sombra para efecto 3D */
+}
