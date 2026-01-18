@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+    <div class="container">
+        <h2>Regitro de usuario</h2>
+        <form id="formulario">
+            <div class="campo">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" placeholder="Minimo 3 caracteres">
+                <span id="errorNombre" class="error-mensaje"></span>
+                </div>
+
+            <div class="campo">
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" id="correo" placeholder="ejemplo@dominio.com">
+                <span id="errorCorreo" class="error-mensaje"></span>
+            </div>
+
+            <div class="campo">
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" placeholder="Minimo 18 años">
+                <span id="errorEdad" class="error-mensaje"></span>
+            </div>
+
+            <div class="campo">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" placeholder="Minimo 8 caracteres">
+                <span id="errorContrasena" class="error-mensaje"></span>
+            </div>
+
+            <div class="campo">
+                <label for="confirmarContrasena">Confirmar contraseña:</label>
+                <input type="password" id="confirmarContrasena" placeholder="Repite la contraseña">
+                <span id="errorConfirmarContrasena" class="error-mensaje"></span>
+            </div>
+
+            <div class="botones">
+                <button type="submit" id="btnEnviar" disabled>Enviar</button>
+                <button type="button" id="btnResetear">Resetear</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>  
+  
