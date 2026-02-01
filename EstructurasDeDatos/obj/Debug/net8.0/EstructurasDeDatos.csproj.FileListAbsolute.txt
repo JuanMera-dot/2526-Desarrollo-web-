@@ -1,0 +1,15 @@
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\obj\Debug\net8.0\EstructurasDeDatos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\obj\Debug\net8.0\EstructurasDeDatos.AssemblyInfoInputs.cache
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\obj\Debug\net8.0\EstructurasDeDatos.AssemblyInfo.cs
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\obj\Debug\net8.0\EstructurasDeDatos.csproj.CoreCompileInputs.cache
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\obj\Debug\net8.0\EstructurasDeDatos.sourcelink.json
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\bin\Debug\net8.0\EstructurasDeDatos.exe
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\bin\Debug\net8.0\EstructurasDeDatos.deps.json
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\bin\Debug\net8.0\EstructurasDeDatos.runtimeconfig.json
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\bin\Debug\net8.0\EstructurasDeDatos.dll
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\bin\Debug\net8.0\EstructurasDeDatos.pdb
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\obj\Debug\net8.0\EstructurasDeDatos.dll
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\obj\Debug\net8.0\refint\EstructurasDeDatos.dll
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\obj\Debug\net8.0\EstructurasDeDatos.pdb
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\obj\Debug\net8.0\EstructurasDeDatos.genruntimeconfig.cache
+C:\Desarrollo web\2526-Desarrollo-web-\EstructurasDeDatos\obj\Debug\net8.0\ref\EstructurasDeDatos.dll

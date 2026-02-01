@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea Bootstrap y JS - UEA</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Tienda UEA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        
+        <div id="miCarrusel" class="carousel slide mb-5 shadow rounded overflow-hidden" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#miCarrusel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#miCarrusel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#miCarrusel" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://placehold.co/1200x400/2c3e50/white?text=Bienvenido+a+la+Tienda+UEA" class="d-block w-100" alt="Slide 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://placehold.co/1200x400/e67e22/white?text=Grandes+Ofertas+Tecnologicas" class="d-block w-100" alt="Slide 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://placehold.co/1200x400/27ae60/white?text=Envios+a+Todo+el+Ecuador" class="d-block w-100" alt="Slide 3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#miCarrusel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#miCarrusel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 id="productos" class="mb-3 text-primary border-bottom pb-2">Lista de Productos</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Estado</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Laptop HP 16GB RAM</td>
+                                <td>Computación</td>
+                                <td><span class="badge bg-success">En Stock</span></td>
+                                <td>$850.00</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Mouse Inalámbrico</td>
+                                <td>Accesorios</td>
+                                <td><span class="badge bg-warning text-dark">Pocas Unidades</span></td>
+                                <td>$25.00</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Teclado Mecánico RGB</td>
+                                <td>Gaming</td>
+                                <td><span class="badge bg-success">En Stock</span></td>
+                                <td>$60.00</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Monitor 24" IPS</td>
+                                <td>Periféricos</td>
+                                <td><span class="badge bg-danger">Agotado</span></td>
+                                <td>$180.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-8 text-center bg-light p-4 rounded border">
+                <h3>Zona de Interacción</h3>
+                <button id="btnAlerta" class="btn btn-warning btn-lg shadow-sm">
+                    <i class="bi bi-bell"></i> ¡Haz clic aquí para una sorpresa!
+                </button>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <h2 id="contacto" class="mb-3 text-primary border-bottom pb-2">Contáctanos</h2>
+                <form id="formularioContacto" class="p-4 border rounded shadow-sm bg-white" novalidate>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label fw-bold">Nombre Completo:</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ej: Juan Pérez">
+                        <div class="text-danger small mt-1" id="errorNombre"></div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-bold">Correo Electrónico:</label>
+                        <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com">
+                        <div class="text-danger small mt-1" id="errorEmail"></div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="mensaje" class="form-label fw-bold">Mensaje:</label>
+                        <textarea class="form-control" id="mensaje" rows="4" placeholder="Escribe tu consulta aquí..."></textarea>
+                        <div class="text-danger small mt-1" id="errorMensaje"></div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Enviar Mensaje</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer-personalizado text-center p-4 text-white">
+        <div class="container">
+            <p class="mb-1">&copy; 2026 Proyecto Desarrollo Web - Universidad Estatal Amazónica</p>
+            <p class="small mb-0">Creado con Bootstrap 5, HTML, CSS y JavaScript.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

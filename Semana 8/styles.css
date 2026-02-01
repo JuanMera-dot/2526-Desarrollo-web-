@@ -1,0 +1,67 @@
+body {
+    /* Imagen de fondo de la UEA */
+    background-image: url('https://www.profesionalenmedioambiente.com/images/pma/noticias/2019/NoticiaPMA-Acuerdo-UEA.jpg');
+    
+    /* Ajustes para que cubra toda la pantalla y no se mueva */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Efecto Parallax */
+    min-height: 100vh;
+}
+.container {
+    background-color: rgba(255, 255, 255, 0.85); 
+    
+    padding: 30px;
+    border-radius: 15px; /* Bordes redondeados */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    
+    /* Sombra suave y efecto borroso */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* Menú de navegación */
+.navbar {
+    /* Fondo oscuro semitransparente para contraste */
+    background-color: rgba(0, 30, 50, 0.95) !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    color: #ffffff !important;
+    /* Sombra en el texto para que se lea perfecto */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8); 
+}
+.nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.nav-link:hover {
+    color: #ffc107 !important; /* Color amarillo al pasar el mouse */
+    transform: scale(1.05);
+}
+/* Formulario*/
+#formularioContacto:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    background-color: #fff;
+}
+/* Pie de pagina */
+.footer-personalizado {
+    /* Fondo blanco */
+    background-color: rgba(255, 255, 255, 0.9);    
+    color: #000000 !important; 
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.footer-personalizado p {
+    color: #000000 !important;
+    font-weight: 500;
+}
