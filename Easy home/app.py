@@ -2,7 +2,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-# 1. Ruta Principal: Muestra el propósito del negocio
+# Ruta Principal: Muestra el propósito del negocio
 @app.route('/')
 def home():
     return """
@@ -12,10 +12,10 @@ def home():
     <p>Prueba nuestra ruta dinámica agregando a la URL: <b>/servicio/plomeria</b></p>
     """
 
-# 2. Ruta Dinámica: Adaptada a tus servicios
+# Ruta Dinámica: Adaptada a tus servicios
 @app.route('/servicio/<nombre_servicio>')
 def servicio(nombre_servicio):
-    # Mensaje coherente según el ejemplo de la tarea
+   
     return f"<h1>Servicio de {nombre_servicio}</h1><p>Consultando disponibilidad de técnicos para {nombre_servicio} en tu zona. ¡Espera un momento!</p>"
 
 if __name__ == '__main__':
