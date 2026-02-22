@@ -1,23 +1,25 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# Ruta Principal: Muestra el propósito del negocio
 @app.route('/')
 def home():
-    return """
-    <h1>Bienvenido a Easy Home</h1>
-    <p>Conectamos profesionales de plomería, electricidad y limpieza con tu hogar.</p>
-    <hr>
-    <p>Prueba nuestra ruta dinámica agregando a la URL: <b>/servicio/plomeria</b></p>
-    """
+    # Renderizamos la página de inicio
+    return render_template('index.html')
 
-# Ruta Dinámica: Adaptada a tus servicios
-@app.route('/servicio/<nombre_servicio>')
-def servicio(nombre_servicio):
-   
-    return f"<h1>Servicio de {nombre_servicio}</h1><p>Consultando disponibilidad de técnicos para {nombre_servicio} en tu zona. ¡Espera un momento!</p>"
+@app.route('/about')
+def about():
+    # Renderizamos la página de acerca de
+    return render_template('about.html')
+
+# Puedes agregar más rutas para tu proyecto (servicios, clientes, etc.)
+@app.route('/servicios')
+def servicios():
+    return render_template('servicios.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
+
     
+
+

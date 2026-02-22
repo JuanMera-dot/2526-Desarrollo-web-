@@ -1,0 +1,221 @@
+/* =========================================
+   1. RESET Y ESTILOS GLOBALES
+   ========================================= */
+:root {
+    --primary-color: #1a365d; /* Azul corporativo oscuro */
+    --secondary-color: #2b6cb0; /* Azul vibrante */
+    --accent-color: #3182ce; /* Azul brillante para detalles */
+    --bg-color: #edf2f7; /* Fondo "plomo" o gris azulado claro */
+    --text-main: #2d3748; /* Texto principal */
+    --text-muted: #718096; /* Texto secundario */
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* =========================================
+   2. ENCABEZADO Y MENÚ
+   ========================================= */
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    border-bottom: 4px solid var(--accent-color);
+}
+
+header h1 {
+    text-align: center;
+    color: var(--white);
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #e2e8f0;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--white);
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   3. CONTENEDOR PRINCIPAL
+   ========================================= */
+main {
+    flex: 1;
+    width: 90%;
+    max-width: 1050px;
+    margin: 4rem auto;
+}
+
+/* =========================================
+   4. PÁGINA DE INICIO (INDEX)
+   ========================================= */
+.inicio-hero {
+    text-align: center;
+    padding: 5rem 2rem;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin-bottom: 4rem;
+    border-top: 5px solid var(--accent-color);
+}
+
+.inicio-hero h2 {
+    font-size: 3.2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.eslogan {
+    font-size: 1.4rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Acordeón Interactivo */
+.informacion-interactiva h3,
+.servicios-destacados h3 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+details {
+    background-color: var(--white);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1.2rem 1.5rem;
+    border-left: 6px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    transition: all 0.3s ease;
+}
+
+details:hover {
+    box-shadow: 0 6px 20px rgba(49, 130, 206, 0.15);
+    transform: translateX(5px);
+}
+
+summary {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    outline: none;
+}
+
+summary::-webkit-details-marker { display: none; }
+
+summary::after {
+    content: '▼';
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    transition: transform 0.3s ease;
+}
+
+details[open] summary::after {
+    transform: rotate(180deg);
+}
+
+/* Tarjetas de Servicios */
+.grid-servicios {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.tarjeta-servicio {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.tarjeta-servicio:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(49, 130, 206, 0.15);
+    border-bottom: 4px solid var(--accent-color);
+}
+
+/* Bloque de Contacto */
+.soporte-contacto {
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 4rem 2rem;
+    border-radius: 12px;
+    color: var(--white);
+    margin-top: 4rem;
+}
+
+.btn-contacto {
+    display: inline-block;
+    background-color: var(--white);
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 800;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+}
+
+.btn-contacto:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+/* =========================================
+   5. PIE DE PÁGINA
+   ========================================= */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: #1a202c;
+    color: #a0aec0;
+    margin-top: auto;
+}
