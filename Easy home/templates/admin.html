@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="contenedor">
+    <div class="inicio-hero">
+        <h2>Panel de Administración</h2>
+        <p class="eslogan">Gestión de Inventario: Tienda, Suministros e Instrumentos.</p>
+    </div>
+
+    <div class="tarjeta-servicio" style="padding: 40px; margin-bottom: 50px;">
+        <h3 style="color: var(--primary-color); margin-bottom: 25px;">📦 Añadir Nuevo Item</h3>
+        
+        <form action="/admin" method="POST">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="mb-3">
+                    <label class="form-label">Nombre del Producto/Instrumento:</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="Ej: Multímetro Digital" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Precio ($):</label>
+                    <input type="number" name="precio" class="form-control" step="0.01" placeholder="0.00" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Cantidad en Stock:</label>
+                    <input type="number" name="cantidad" class="form-control" placeholder="1" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Categoría del Inventario:</label>
+                    <select name="categoria" class="form-select" required>
+                        <option value="Tienda">Producto para Tienda</option>
+                        <option value="Suministros">Suministro Técnico</option>
+                        <option value="Instrumentos">Instrumento de Medición</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-contacto" style="width: 100%; border: none; margin-top: 20px; cursor: pointer;">
+                Guardar en la Base de Datos
+            </button>
+        </form>
+    </div>
+
+    <div class="tarjeta-servicio" style="padding: 20px;">
+        <h4 style="color: var(--primary-color);">Inventario Actual</h4>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in productos %}
+                <tr>
+                    <td>{{ p.nombre }}</td>
+                    <td><span class="badge bg-primary">{{ p.categoria }}</span></td>
+                    <td>{{ p.cantidad }}</td>
+                    <td>${{ p.precio }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

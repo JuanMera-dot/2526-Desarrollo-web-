@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="contenedor">
+    <div class="inicio-hero">
+        <h2>Suministros Técnicos</h2>
+        <p class="eslogan">Materiales esenciales para tus instalaciones de domótica.</p>
+    </div>
+
+    <div class="grid-servicios">
+        {% for s in suministros %}
+        <div class="tarjeta-servicio">
+            <h4>📦 {{ s.nombre }}</h4>
+            <p><strong>Stock:</strong> {{ s.cantidad }} unidades</p>
+            <p style="color: var(--secondary-color); font-weight: 800; font-size: 1.2rem;">
+                ${{ s.precio }}
+            </p>
+            <button class="btn-contacto" style="width: 100%; border: none; padding: 10px;">Solicitar</button>
+        </div>
+        {% else %}
+        <div class="tarjeta-servicio" style="width: 100%;">
+            <p>Aún no hay suministros registrados. Agrégalos desde el panel de Admin.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

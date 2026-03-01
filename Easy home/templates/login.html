@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="contenedor" style="max-width: 400px; margin-top: 100px;">
+    <div class="tarjeta-servicio" style="padding: 40px;">
+        <h3 style="text-align: center; color: var(--primary-color);">Acceso Admin</h3>
+        <form method="POST">
+            <input type="text" name="usuario" placeholder="Usuario" required 
+                   style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px;">
+            <input type="password" name="password" placeholder="Contraseña" required 
+                   style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px;">
+            <button type="submit" class="btn-contacto" style="width: 100%; border: none; cursor: pointer;">
+                Entrar
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

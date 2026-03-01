@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="contenedor">
+    <div class="inicio-hero">
+        <h2>Instrumentos de Medición</h2>
+        <p class="eslogan">Equipos de alta precisión para el diagnóstico de tu hogar inteligente.</p>
+    </div>
+
+    <div class="grid-servicios">
+        {% for inst in instrumentos %}
+        <div class="tarjeta-servicio">
+            <h4>🛠️ {{ inst.nombre }}</h4>
+            <p><strong>Disponible:</strong> {{ inst.cantidad }}</p>
+            <p style="color: var(--secondary-color); font-weight: 800; font-size: 1.2rem;">
+                ${{ inst.precio }}
+            </p>
+            <button class="btn-contacto" style="width: 100%; border: none; padding: 10px;">Reservar Equipo</button>
+        </div>
+        {% else %}
+        <div class="tarjeta-servicio" style="width: 100%;">
+            <p>Aún no hay instrumentos registrados. Agrégalos desde el panel de Admin.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

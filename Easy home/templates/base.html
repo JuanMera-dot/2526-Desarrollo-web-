@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Home - Domótica Accesible</title>
+    <title>Easy Home | Domótica Accesible</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
@@ -13,21 +17,30 @@
         <h1>Easy Home</h1>
         <nav>
             <ul>
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/about">Acerca de</a></li>
-                <li><a href="/servicios">Servicios</a></li>
+                <li><a href="{{ url_for('index') }}">Inicio</a></li>
+                <li><a href="{{ url_for('tienda') }}">Tienda</a></li>
+                <li><a href="{{ url_for('suministros') }}">Suministros</a></li>
+                <li><a href="{{ url_for('instrumentos') }}">Instrumentos</a></li>
+                <li><a href="{{ url_for('registro') }}">Unirse</a></li>
+
+                {% if session.get('es_admin') %}
+                    <li><a href="{{ url_for('admin') }}" class="text-warning">Administrar</a></li>
+                    <li><a href="{{ url_for('logout') }}" class="text-danger">Salir</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Acceso</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
 
     <main>
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 
     <footer>
         <p>&copy; 2026 Easy Home - Tu hogar inteligente a un clic de distancia.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
