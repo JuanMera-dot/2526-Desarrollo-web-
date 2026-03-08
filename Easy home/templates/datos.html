@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Almacenados - Easy Home</title>
+</head>
+<body>
+    <h1>Datos Almacenados en Easy Home</h1>
+    <a href="/registrar_orm">Registrar otro servicio</a> | <a href="/">Volver al Inicio</a>
+    <hr>
+
+    <h2>1. Datos en Base de Datos (SQLite + SQLAlchemy)</h2>
+    <ul>
+        {% for servicio in db %}
+            <li>ID: {{ servicio.id }} | Nombre: {{ servicio.nombre }} | Precio: ${{ servicio.precio }} | Categoría: {{ servicio.categoria }}</li>
+        {% else %}
+            <li>No hay datos en la base de datos.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>2. Datos en Archivo TXT</h2>
+    <ul>
+        {% for linea in txt %}
+            <li>{{ linea }}</li>
+        {% else %}
+            <li>No hay datos en el archivo TXT.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>3. Datos en Archivo JSON</h2>
+    <ul>
+        {% for item in json %}
+            <li>Nombre: {{ item.nombre }} | Precio: ${{ item.precio }} | Categoría: {{ item.categoria }}</li>
+        {% else %}
+            <li>No hay datos en el archivo JSON.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>4. Datos en Archivo CSV</h2>
+    <ul>
+        {% for fila in csv %}
+            {% if loop.index > 1 or fila[0] != 'nombre' %}
+                <li>Nombre: {{ fila[0] }} | Precio: ${{ fila[1] }} | Categoría: {{ fila[2] }}</li>
+            {% endif %}
+        {% else %}
+            <li>No hay datos en el archivo CSV.</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

@@ -64,3 +64,5 @@ class Inventario:
             p = Producto(*fila)
             self.productos[p.id] = p
         conexion.close()
+
+        

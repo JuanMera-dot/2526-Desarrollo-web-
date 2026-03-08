@@ -68,6 +68,30 @@
         </div>
     </section>
 
+    <section class="servicios-destacados" style="margin-top: 4rem;">
+        <h3 style="color: var(--primary-color);">Nuestros Expertos Certificados</h3>
+        <p style="text-align: center; color: #666; margin-bottom: 2rem;">Profesionales listos para transformar tu hogar.</p>
+        
+        <div class="grid-servicios">
+            {% for experto in expertos %}
+            <div class="tarjeta-servicio" style="border-top: 4px solid var(--primary-color);">
+                <h4 style="margin-bottom: 0.5rem;">👤 {{ experto.nombre }}</h4>
+                <p style="color: #2c3e50; font-weight: 600; margin-bottom: 0.2rem;">{{ experto.profesion }}</p>
+                <p class="small text-muted">📍 {{ experto.ubicacion }}</p>
+                <hr>
+                <p class="small" style="font-style: italic; min-height: 60px;">"{{ experto.proposito }}"</p>
+                <a href="mailto:{{ experto.correo }}" class="btn-contacto" style="padding: 8px 15px; font-size: 0.9rem; text-decoration: none; display: inline-block;">
+                    Contactar Experto
+                </a>
+            </div>
+            {% else %}
+            <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
+                <p class="text-muted">Actualmente estamos buscando nuevos expertos para unirse a nuestra red.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
     <section class="informacion-interactiva" style="margin-top: 4rem;">
         <div class="tarjeta-servicio" style="width: 100%; text-align: left; padding: 3rem;">
             <h3 style="color: var(--primary-color); text-align: left; margin-bottom: 1.5rem;">📍 Ubicación y Contacto</h3>

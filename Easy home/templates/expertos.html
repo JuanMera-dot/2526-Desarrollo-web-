@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="inicio-hero" style="background: #1a3a63; padding: 4rem 2rem; text-align: center; border-radius: 0 0 20px 20px;">
+    <h2 style="color: white !important; font-weight: 800; margin-bottom: 10px;">
+        Directorio de Expertos Easy Home
+    </h2>
+    <p style="color: rgba(255,255,255,0.9) !important; font-size: 1.2rem;">
+        Encuentra al especialista adecuado cerca de ti.
+    </p>
+</div>
+
+<div class="container mt-5">
+    {% for categoria in categorias %}
+    <div class="categoria-seccion mb-5">
+        <h3 class="mb-4" style="color: var(--primary-color); border-bottom: 2px solid #eee; padding-bottom: 10px;">
+            🛠️ {{ categoria }}s
+        </h3>
+        
+        <div class="grid-servicios">
+            {% for experto in expertos %}
+                {% if experto.profesion == categoria %}
+                <div class="tarjeta-servicio">
+                    <h4>👤 {{ experto.nombre }}</h4>
+                    
+                    <div class="estrellas mb-2">
+                        {% set promedio = experto.promedio_estrellas() %}
+                        <span style="color: #f1c40f; font-size: 1.2rem;">
+                            {% for i in range(5) %}
+                                {% if i < promedio|int %}
+                                    ★
+                                {% else %}
+                                    ☆
+                                {% endif %}
+                            {% endfor %}
+                        </span>
+                        <small class="text-muted">({{ promedio }})</small>
+                    </div>
+
+                    <p class="small text-muted">📍 {{ experto.ubicacion }}</p>
+                    <hr>
+                    <p class="small" style="min-height: 50px;">"{{ experto.proposito }}"</p>
+                    
+                    <a href="{{ url_for('contactar_experto', experto_id=experto.id) }}" 
+                       class="btn-contacto" 
+                       style="text-decoration: none; display: inline-block; width: 100%; text-align: center;">
+                        Solicitar Servicio
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <p class="text-muted">Aún no hay expertos registrados en ninguna categoría.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

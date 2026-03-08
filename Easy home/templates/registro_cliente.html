@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+    <div class="tarjeta-servicio p-4 shadow">
+        <h2 class="text-center mb-4" style="color: var(--primary-color);">Registro de Cliente</h2>
+        <p class="text-center text-muted small">Crea tu cuenta para contratar expertos en domótica.</p>
+        
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Nombre Completo</label>
+                <input type="text" name="nombre" class="form-control" required placeholder="Ej: Luis Pérez">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Correo Electrónico</label>
+                <input type="email" name="correo" class="form-control" required placeholder="tu@correo.com">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn-contacto w-100" style="border: none;">Crear Cuenta de Cliente</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('login') }}" class="small text-decoration-none">¿Ya tienes cuenta? Inicia sesión</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
