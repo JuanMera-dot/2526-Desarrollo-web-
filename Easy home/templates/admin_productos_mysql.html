@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow border-0">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">📦 Gestión de Inventario (MySQL)</h3>
+            <span class="badge bg-light text-dark">Total Items: {{ productos|length }}</span>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">Desde este panel oculto puedes controlar los productos almacenados específicamente en MySQL.</p>
+            
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Categoría</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in productos %}
+                    <tr>
+                        <td>{{ p.id_producto }}</td>
+                        <td><strong>{{ p.nombre }}</strong></td>
+                        <td>${{ p.precio }}</td>
+                        <td>{{ p.cantidad }}</td>
+                        <td><span class="badge bg-info">{{ p.categoria }}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editModalProd{{ p.id_producto }}">
+                                ✏️ Editar
+                            </button>
+                            
+                            <a href="{{ url_for('eliminar_producto_mysql', id=p.id_producto) }}" 
+                               class="btn btn-sm btn-outline-danger" 
+                               onclick="return confirm('¿Estás seguro de eliminar este producto de MySQL?')">
+                                🗑️ Borrar
+                            </a>
+                        </td>
+                    </tr>
+
+                    <div class="modal fade" id="editModalProd{{ p.id_producto }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="{{ url_for('editar_producto_mysql', id=p.id_producto) }}" method="POST" class="modal-content">
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title">Editar Producto #{{ p.id_producto }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nombre del Producto</label>
+                                        <input type="text" name="nombre" class="form-control" value="{{ p.nombre }}" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <label class="form-label">Precio ($)</label>
+                                            <input type="number" name="precio" class="form-control" step="0.01" value="{{ p.precio }}" required>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label class="form-label">Cantidad (Stock)</label>
+                                            <input type="number" name="cantidad" class="form-control" value="{{ p.cantidad }}" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Actualizar Producto</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <div class="mt-4">
+                <a href="{{ url_for('admin') }}" class="btn btn-secondary">⬅️ Volver al Panel Admin</a>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-dark">Inicio</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

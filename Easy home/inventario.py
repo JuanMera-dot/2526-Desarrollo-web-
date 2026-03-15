@@ -65,4 +65,24 @@ class Inventario:
             self.productos[p.id] = p
         conexion.close()
 
+    # =========================================================
+    # NUEVA FUNCIÓN: ELIMINAR (PARA EL ADMIN)
+    # =========================================================
+    def eliminar_producto(self, id_producto):
+        """Borra un producto de SQLite y devuelve su nombre para sincronizar con MySQL"""
+        conexion = conectar_db()
+        cursor = conexion.cursor()
         
+        # 1. Obtenemos el nombre antes de borrarlo
+        cursor.execute('SELECT nombre FROM productos WHERE id = ?', (id_producto,))
+        resultado = cursor.fetchone()
+        nombre_producto = resultado[0] if resultado else None
+        
+        # 2. Ejecutamos el borrado
+        if nombre_producto:
+            cursor.execute('DELETE FROM productos WHERE id = ?', (id_producto,))
+            conexion.commit()
+        
+        conexion.close()
+        return nombre_producto
+    

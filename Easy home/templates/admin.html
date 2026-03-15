@@ -52,7 +52,7 @@
                     <th>Categoría</th>
                     <th>Stock</th>
                     <th>Precio</th>
-                </tr>
+                    <th>Acciones</th> </tr>
             </thead>
             <tbody>
                 {% for p in productos %}
@@ -61,6 +61,14 @@
                     <td><span class="badge bg-primary">{{ p.categoria }}</span></td>
                     <td>{{ p.cantidad }}</td>
                     <td>${{ p.precio }}</td>
+                    <td>
+                        <a href="{{ url_for('borrar_producto_admin', id=p.id) }}" 
+                           class="btn btn-sm btn-danger" 
+                           style="text-decoration: none; padding: 5px 10px; border-radius: 5px;"
+                           onclick="return confirm('¿Estás seguro de eliminar este producto de todo el sistema?')">
+                           Borrar
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
