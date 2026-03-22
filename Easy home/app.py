@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify # <--- Se agregó jsonify
 from inventario import Inventario, Producto, crear_tablas, conectar_db
 import sqlite3
 
@@ -24,7 +24,7 @@ db = SQLAlchemy(app)
 
 # --- 3. MODELOS DE DATOS ---
 
-# Tarea de la semana 12
+# Tarea semana 12
 class NuevoServicio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
@@ -40,6 +40,10 @@ class Profesional(db.Model):
     profesion = db.Column(db.String(100), nullable=False)
     ubicacion = db.Column(db.String(100), nullable=False)
     proposito = db.Column(db.Text, nullable=False)
+    
+    # --- NUEVOS CAMPOS PARA EL MAPA ---
+    latitud = db.Column(db.Float, nullable=True)
+    longitud = db.Column(db.Float, nullable=True)
     
     solicitudes = db.relationship('Solicitud', backref='experto', lazy=True)
     resenias = db.relationship('Resenia', backref='experto', lazy=True)
@@ -201,6 +205,44 @@ def logout():
     session.clear() 
     flash('ℹ️ Sesión cerrada.', 'info')
     return redirect(url_for('index'))
+
+# --- RUTA PARA EL LOGIN DE COLABORADORES ---
+@app.route('/portal-colaboradores', methods=['GET', 'POST'])
+def portal_colaboradores():
+    if request.method == 'POST':
+        correo_login = request.form.get('correo')
+        password_login = request.form.get('password')
+        
+        experto = Profesional.query.filter_by(correo=correo_login).first()
+        
+        if experto and experto.password == password_login:
+            session.clear() 
+            session['usuario_id'] = experto.id
+            session['nombre_usuario'] = experto.nombre
+            session['rol'] = 'experto'
+            flash(f'👋 Bienvenido de nuevo, {experto.nombre}.', 'success')
+            
+            # ¡AQUÍ ESTÁ EL CAMBIO! Ahora te envía al panel exclusivo
+            return redirect(url_for('dashboard_colaborador')) 
+        else:
+            flash('❌ Correo o contraseña incorrectos.', 'danger')
+            return redirect(url_for('portal_colaboradores'))
+            
+    return render_template('login_colaborador.html')
+
+# --- NUEVA RUTA: EL PANEL DE CONTROL (DASHBOARD) ---
+@app.route('/dashboard-colaborador')
+def dashboard_colaborador():
+    # Verificamos que sea un experto logueado, si no, lo mandamos al login
+    if not session.get('usuario_id') or session.get('rol') != 'experto':
+        return redirect(url_for('portal_colaboradores'))
+    
+    # Traemos todos los datos del experto desde la base de datos
+    experto = Profesional.query.get(session['usuario_id'])
+    
+    # Renderizamos la nueva plantilla oscura y le pasamos los datos
+    return render_template('dashboard_colaborador.html', experto=experto)
+
 
 # =========================================================
 # ADMINISTRACIÓN Y SINCRONIZACIÓN (SQLITE + MYSQL)
@@ -407,6 +449,23 @@ def lista_usuarios_mysql():
         finally:
             cursor.close(); conexion.close()
     return render_template('lista_usuarios.html', usuarios=usuarios_db)
+
+# --- NUEVA RUTA PARA GUARDAR LA UBICACIÓN DESDE EL PANEL ---
+@app.route('/guardar-ubicacion', methods=['POST'])
+def guardar_ubicacion():
+    if not session.get('usuario_id') or session.get('rol') != 'experto':
+        return jsonify({"error": "No autorizado"}), 403
+    
+    datos = request.get_json()
+    experto = Profesional.query.get(session['usuario_id'])
+    
+    if experto:
+        experto.latitud = datos['lat']
+        experto.longitud = datos['lng']
+        db.session.commit()
+        return jsonify({"mensaje": "📍 Ubicación actualizada con éxito"}), 200
+    
+    return jsonify({"error": "Experto no encontrado"}), 404
 
 if __name__ == '__main__':
     with app.app_context():

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Colaboradores - Easy Home</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f0f13; color: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        .login-container { 
+            width: 100%; max-width: 420px; padding: 3rem; 
+            background-color: #1a1a24; border-radius: 12px; 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5); 
+            border-top: 5px solid #00a8ff; 
+        }
+        
+        .brand { text-align: center; margin-bottom: 2rem; }
+        .brand h1 { font-size: 1.8rem; color: #ffffff; margin-bottom: 0.5rem; }
+        .brand span { color: #00a8ff; }
+        .brand p { color: #8a8a9e; font-size: 0.9rem; }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: #b3b3c6; font-size: 0.9rem; }
+        .form-control { 
+            width: 100%; padding: 12px; 
+            background-color: #252533; border: 1px solid #333344; 
+            border-radius: 6px; color: #ffffff; transition: border 0.3s;
+        }
+        .form-control:focus { outline: none; border-color: #00a8ff; }
+        
+        .btn-login { 
+            width: 100%; padding: 12px; 
+            background-color: #00a8ff; color: #ffffff; 
+            border: none; border-radius: 6px; font-weight: bold; 
+            font-size: 1rem; cursor: pointer; transition: background 0.3s; 
+            margin-top: 1rem;
+        }
+        .btn-login:hover { background-color: #008ecc; }
+        
+        .alert { 
+            background-color: #dc3545; color: white; 
+            padding: 10px; border-radius: 5px; 
+            margin-bottom: 1rem; text-align: center; font-size: 0.9rem; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="brand">
+            <h1>Easy<span>Home</span></h1>
+            <p>Portal Exclusivo para Colaboradores</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'danger' %}
+                        <div class="alert">{{ message }}</div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form action="{{ url_for('portal_colaboradores') }}" method="POST">
+            <div class="form-group">
+                <label>Correo Electrónico</label>
+                <input type="email" name="correo" class="form-control" placeholder="tu@correo.com" required>
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-login">Ingresar al Sistema</button>
+        </form>
+    </div>
+
+</body>
+</html>

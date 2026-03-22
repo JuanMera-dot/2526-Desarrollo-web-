@@ -1,0 +1,5 @@
+C:\Desarrollo web\2526-Desarrollo-web-\obj\Debug\net8.0\2526-Desarrollo-web-.GeneratedMSBuildEditorConfig.editorconfig
+C:\Desarrollo web\2526-Desarrollo-web-\obj\Debug\net8.0\2526-Desarrollo-web-.AssemblyInfoInputs.cache
+C:\Desarrollo web\2526-Desarrollo-web-\obj\Debug\net8.0\2526-Desarrollo-web-.AssemblyInfo.cs
+C:\Desarrollo web\2526-Desarrollo-web-\obj\Debug\net8.0\2526-Desarrollo-web-.csproj.CoreCompileInputs.cache
+C:\Desarrollo web\2526-Desarrollo-web-\obj\Debug\net8.0\2526-Desarrollo-web-.sourcelink.json

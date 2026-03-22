@@ -1,44 +1,82 @@
 {% extends "base.html" %}
+
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-7">
-        <div class="card shadow-sm border-0 p-5" style="border-radius: 20px; background: white;">
-            <h3 class="text-center fw-bold mb-4" style="color: #1a3a63;">📝 Registro de Experto</h3>
-            <form method="POST">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="form-label small fw-bold text-muted">Nombre Completo</label>
-                        <input type="text" name="nombre" class="form-control bg-light border-0 py-2" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label small fw-bold text-muted">Correo Electrónico</label>
-                        <input type="email" name="correo" class="form-control bg-light border-0 py-2" required>
-                    </div>
-                    <div class="col-md-12">
-                        <label class="form-label small fw-bold text-muted">Contraseña</label>
-                        <input type="password" name="password" class="form-control bg-light border-0 py-2" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label small fw-bold text-muted">Especialidad</label>
-                        <select name="profesion" class="form-select bg-light border-0 py-2" required>
-                            <option value="Carpintero">Carpintero</option>
-                            <option value="Electricista">Electricista</option>
-                            <option value="Técnico Domótica">Técnico Domótica</option>
-                            <option value="Chofer">Chofer</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label small fw-bold text-muted">Ubicación</label>
-                        <input type="text" name="ubicacion" class="form-control bg-light border-0 py-2" required>
-                    </div>
-                    <div class="col-md-12">
-                        <label class="form-label small fw-bold text-muted">Propósito Profesional</label>
-                        <textarea name="proposito" class="form-control bg-light border-0" rows="3" required></textarea>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary w-100 mt-4 py-3 fw-bold shadow-sm" style="border-radius: 12px;">Finalizar Registro</button>
-            </form>
+<style>
+    .registro-wrapper {
+        display: flex; justify-content: center; align-items: center;
+        min-height: 80vh; margin: 3rem 0;
+    }
+    .registro-card {
+        background-color: var(--bg-secundario); border: 1px solid var(--borde);
+        border-top: 4px solid var(--acento); border-radius: 12px;
+        padding: 3rem; width: 100%; max-width: 600px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .registro-header { text-align: center; margin-bottom: 2rem; }
+    .registro-header h2 { color: var(--texto-claro); font-size: 2rem; }
+    .registro-header p { color: var(--acento); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .full-width { grid-column: span 2; }
+    
+    .form-group label { display: block; margin-bottom: 0.5rem; color: var(--texto-mutado); font-size: 0.85rem; }
+    .form-control {
+        width: 100%; padding: 12px; background-color: var(--bg-principal);
+        border: 1px solid var(--borde); border-radius: 6px; color: var(--texto-claro); outline: none;
+    }
+    .form-control:focus { border-color: var(--acento); box-shadow: 0 0 10px rgba(0, 168, 255, 0.2); }
+    
+    textarea.form-control { min-height: 100px; resize: vertical; }
+
+    .btn-submit {
+        width: 100%; padding: 15px; background-color: var(--acento); color: white;
+        border: none; border-radius: 6px; font-weight: bold; cursor: pointer;
+        margin-top: 1.5rem; transition: 0.3s; font-size: 1.1rem;
+    }
+    .btn-submit:hover { background-color: var(--acento-hover); transform: scale(1.02); }
+</style>
+
+<div class="registro-wrapper">
+    <div class="registro-card">
+        <div class="registro-header">
+            <p>Portal de Colaboradores</p>
+            <h2>Registro de Nuevo Experto</h2>
         </div>
+
+        <form action="{{ url_for('registro') }}" method="POST">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="Ej: Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" name="correo" class="form-control" placeholder="nombre@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label>Profesión / Especialidad</label>
+                    <input type="text" name="profesion" class="form-control" placeholder="Ej: Carpintero, Plomero..." required>
+                </div>
+                <div class="form-group full-width">
+                    <label>Ciudad / Ubicación</label>
+                    <input type="text" name="ubicacion" class="form-control" placeholder="Ej: Quito, Valle de los Chillos" required>
+                </div>
+                <div class="form-group full-width">
+                    <label>Propósito o Resumen Profesional</label>
+                    <textarea name="proposito" class="form-control" placeholder="Cuéntanos brevemente sobre tu experiencia y qué servicios ofreces..." required></textarea>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-submit">Crear Cuenta de Colaborador</button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 1.5rem; color: var(--texto-mutado); font-size: 0.9rem;">
+            ¿Ya tienes cuenta? <a href="{{ url_for('portal_colaboradores') }}" style="color: var(--acento); text-decoration: none;">Inicia sesión aquí</a>
+        </p>
     </div>
 </div>
 {% endblock %}

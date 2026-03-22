@@ -1,26 +1,54 @@
 {% extends "base.html" %}
-{% block content %}
-<div class="contenedor">
-    <div class="inicio-hero">
-        <h2>Suministros Técnicos</h2>
-        <p class="eslogan">Materiales esenciales para tus instalaciones de hogar.</p>
-    </div>
 
-    <div class="grid-servicios">
-        {% for s in suministros %}
-        <div class="tarjeta-servicio">
-            <h4>📦 {{ s.nombre }}</h4>
-            <p><strong>Stock:</strong> {{ s.cantidad }} unidades</p>
-            <p style="color: var(--secondary-color); font-weight: 800; font-size: 1.2rem;">
-                ${{ s.precio }}
-            </p>
-            <button class="btn-contacto" style="width: 100%; border: none; padding: 10px;">Solicitar</button>
-        </div>
-        {% else %}
-        <div class="tarjeta-servicio" style="width: 100%;">
-            <p>Aún no hay suministros registrados. Agrégalos desde el panel de Admin.</p>
+{% block content %}
+<style>
+    .tienda-header {
+        text-align: center; margin-bottom: 3rem; padding: 3rem 2rem;
+        background: linear-gradient(180deg, rgba(0, 168, 255, 0.05) 0%, transparent 100%);
+        border-bottom: 1px solid var(--borde); border-radius: 12px;
+    }
+    .tienda-header h2 { color: var(--texto-claro); font-size: 2.2rem; margin-bottom: 0.5rem; }
+    .tienda-header p { color: var(--texto-mutado); font-size: 1.1rem; }
+
+    .empty-state {
+        text-align: center; padding: 5rem 2rem;
+        background-color: var(--bg-secundario); border: 2px dashed var(--borde);
+        border-radius: 12px; color: var(--texto-mutado); max-width: 600px; margin: 0 auto;
+    }
+    .empty-state i { font-size: 4rem; color: var(--borde); margin-bottom: 1rem; }
+
+    /* Diseño para cuando sí haya productos */
+    .grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; }
+    .tarjeta-producto {
+        background-color: var(--bg-secundario); border: 1px solid var(--borde);
+        border-radius: 12px; padding: 2rem; text-align: center; transition: 0.3s;
+    }
+    .tarjeta-producto:hover { border-color: var(--acento); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 168, 255, 0.1); }
+    .precio-producto { color: #10b981; font-size: 1.8rem; font-weight: bold; margin: 1rem 0; }
+</style>
+
+<div class="tienda-header">
+    <h2>Suministros Técnicos</h2>
+    <p>Materiales esenciales y repuestos para tus instalaciones de hogar.</p>
+</div>
+
+{% if suministros %}
+    <div class="grid-productos">
+        {% for item in suministros %}
+        <div class="tarjeta-producto">
+            <h3 style="color: var(--texto-claro);">{{ item.nombre }}</h3>
+            <p style="color: var(--texto-mutado);">Stock disponible: {{ item.cantidad }}</p>
+            <div class="precio-producto">${{ item.precio }}</div>
+            <button class="btn-nav btn-fill" style="width: 100%;">Solicitar</button>
         </div>
         {% endfor %}
     </div>
-</div>
+{% else %}
+    <div class="empty-state">
+        <i class='bx bx-package'></i>
+        <h3 style="color: var(--texto-claro); margin-bottom: 0.5rem;">Inventario Vacío</h3>
+        <p>Aún no hay suministros registrados. Agrégalos desde el panel de Administración.</p>
+    </div>
+{% endif %}
+
 {% endblock %}

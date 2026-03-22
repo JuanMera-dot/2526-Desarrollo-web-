@@ -1,109 +1,214 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="inicio-hero">
-        <h2>Bienvenido a Easy Home</h2>
-        <p class="eslogan">Domótica accesible para todos. Tu hogar inteligente a un clic de distancia.</p>
+<style>
+    /* Estilos específicos para la página de inicio */
+    .hero-section {
+        text-align: center;
+        padding: 6rem 2rem;
+        background: linear-gradient(180deg, rgba(11, 17, 33, 0) 0%, rgba(0, 168, 255, 0.05) 100%);
+        border-bottom: 1px solid var(--borde);
+    }
+    
+    .hero-section h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: var(--texto-claro);
+    }
+    
+    .hero-section h1 span {
+        color: var(--acento);
+    }
+    
+    .hero-section p {
+        font-size: 1.2rem;
+        color: var(--texto-mutado);
+        max-width: 600px;
+        margin: 0 auto 2.5rem auto;
+    }
+
+    /* Buscador Gigante */
+    .search-bar {
+        max-width: 700px;
+        margin: 0 auto;
+        display: flex;
+        background-color: var(--bg-secundario);
+        border: 1px solid var(--borde);
+        border-radius: 50px;
+        padding: 5px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .search-bar input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        padding: 15px 25px;
+        color: var(--texto-claro);
+        font-size: 1.1rem;
+        outline: none;
+    }
+    
+    .search-bar button {
+        background-color: var(--acento);
+        color: white;
+        border: none;
+        padding: 0 30px;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .search-bar button:hover {
+        background-color: var(--acento-hover);
+        box-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
+    }
+
+    /* Categorías de Servicios */
+    .seccion-contenedor {
+        max-width: 1200px;
+        margin: 5rem auto;
+        padding: 0 2rem;
+    }
+    
+    .titulo-seccion {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 3rem;
+        color: var(--texto-claro);
+    }
+
+    .grid-categorias {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+    
+    .tarjeta-categoria {
+        background-color: var(--bg-secundario);
+        border: 1px solid var(--borde);
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: center;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    
+    .tarjeta-categoria:hover {
+        transform: translateY(-10px);
+        border-color: var(--acento);
+        box-shadow: 0 10px 20px rgba(0, 168, 255, 0.1);
+    }
+    
+    .tarjeta-categoria i {
+        font-size: 3rem;
+        color: var(--acento);
+        margin-bottom: 1rem;
+    }
+    
+    .tarjeta-categoria h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        color: var(--texto-claro);
+    }
+    
+    .tarjeta-categoria p {
+        color: var(--texto-mutado);
+        font-size: 0.9rem;
+    }
+
+    /* Acceso Colaboradores Minimalista */
+    .banner-colaborador {
+        background: linear-gradient(90deg, var(--bg-secundario) 0%, rgba(0, 168, 255, 0.1) 100%);
+        border: 1px solid var(--borde);
+        border-radius: 12px;
+        padding: 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5rem;
+    }
+    
+    .banner-texto h3 { font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--texto-claro); }
+    .banner-texto p { color: var(--texto-mutado); }
+</style>
+
+<section class="hero-section">
+    <h1>Encuentra al experto <span>ideal</span></h1>
+    <p>Domótica, electricidad, plomería y remodelaciones. Todo para que tu hogar funcione a la perfección.</p>
+    
+    <div class="search-bar">
+        <input type="text" placeholder="Ej. Instalar cámaras, electricista, reparar tubería...">
+        <button><i class='bx bx-search'></i> Buscar</button>
+    </div>
+</section>
+
+<div class="seccion-contenedor">
+    <h2 class="titulo-seccion">Nuestras Especialidades</h2>
+    
+    <div class="grid-categorias">
+        <div class="tarjeta-categoria">
+            <i class='bx bx-wifi'></i>
+            <h3>Domótica y Redes</h3>
+            <p>Cámaras, iluminación inteligente y optimización Wi-Fi.</p>
+        </div>
+        <div class="tarjeta-categoria">
+            <i class='bx bx-bulb'></i>
+            <h3>Electricidad</h3>
+            <p>Instalaciones, cableado estructurado y tableros.</p>
+        </div>
+        <div class="tarjeta-categoria">
+            <i class='bx bx-wrench'></i>
+            <h3>Plomería</h3>
+            <p>Reparaciones, tuberías, calefacción y agua potable.</p>
+        </div>
+        <div class="tarjeta-categoria">
+            <i class='bx bx-paint-roll'></i>
+            <h3>Remodelación</h3>
+            <p>Pintura, carpintería, acabados y diseño de interiores.</p>
+        </div>
     </div>
 
-    <section class="informacion-interactiva">
-        <h3>Conoce más sobre nuestra empresa</h3>
-        <details>
-            <summary>Nuestra Historia</summary>
-            <p>Nacimos en el Quito con la idea de conectar a los usuarios con los mejores proveedores de servicios.</p>
-        </details>
-        <details>
-            <summary>Nuestra Misión</summary>
-            <p>Brindar soluciones de automatización y domótica accesibles y seguras para cualquier familia ecuatoriana.</p>
-        </details>
-        <details>
-            <summary>Nuestra Visión</summary>
-            <p>Ser la plataforma líder nacional en servicios de tecnología para el hogar, reconocidos por nuestra confianza.</p>
-        </details>
-    </section>
-
-    <section class="servicios-destacados">
-        <h3>Lo que ofrecemos</h3>
-        <div class="grid-servicios">
-            <div class="tarjeta-servicio">
-                <h4>💡 Iluminación</h4>
-                <p>Controla las luces de toda tu casa desde tu celular o con tu voz.</p>
-            </div>
-            <div class="tarjeta-servicio">
-                <h4>🛡️ Seguridad 24/7</h4>
-                <p>Cámaras, sensores y alarmas conectadas directamente a ti.</p>
-            </div>
-            <div class="tarjeta-servicio">
-                <h4>🔌 Instalaciones</h4>
-                <p>Conecta con profesionales certificados para cualquier arreglo técnico.</p>
-            </div>
-            <div class="tarjeta-servicio">
-                <h4>❄️ Climatización</h4>
-                <p>Ajusta la temperatura de tu hogar antes de llegar a casa.</p>
-            </div>
-            <div class="tarjeta-servicio">
-                <h4>🚪 Cerraduras</h4>
-                <p>Accede sin llaves y genera códigos temporales para tus visitas.</p>
-            </div>
-            <div class="tarjeta-servicio">
-                <h4>🎵 Audio Multi-sala</h4>
-                <p>Sincroniza tu música favorita en todas las habitaciones al mismo tiempo.</p>
-            </div>
-            <div class="tarjeta-servicio">
-                <h4>🪟 Persianas</h4>
-                <p>Programa la apertura y cierre de tus cortinas para aprovechar la luz natural.</p>
-            </div>
-            <div class="tarjeta-servicio">
-                <h4>🌱 Riego Inteligente</h4>
-                <p>Cuida tu jardín automáticamente según el clima y la humedad del suelo.</p>
-            </div>
-            <div class="tarjeta-servicio">
-                <h4>⚡ Monitoreo</h4>
-                <p>Revisa tu consumo eléctrico en tiempo real y ahorra en tu factura.</p>
-            </div>
-            <div class="tarjeta-servicio">
-                <h4>📡 Optimización Wi-Fi</h4>
-                <p>Elimina las zonas muertas configurando redes de alta velocidad en casa.</p>
-            </div>
+    <div class="banner-colaborador">
+        <div class="banner-texto">
+            <h3>¿Eres profesional técnico?</h3>
+            <p>Únete a nuestra red, gestiona tus servicios y encuentra más clientes.</p>
         </div>
-    </section>
+        <div style="display: flex; gap: 1rem;">
+            <a href="{{ url_for('registro') }}" target="_blank" class="btn-nav btn-outline" style="padding: 15px 30px; font-size: 1rem; text-decoration: none;">
+                <i class='bx bx-user-plus'></i> Crear mi cuenta
+            </a>
+            <a href="{{ url_for('portal_colaboradores') }}" target="_blank" class="btn-nav btn-fill" style="padding: 15px 30px; font-size: 1rem; text-decoration: none;">
+                <i class='bx bx-log-in'></i> Ingresar al Portal
+            </a>
+        </div>
+    </div>
+</div>
 
-    <section class="servicios-destacados" style="margin-top: 4rem;">
-        <h3 style="color: var(--primary-color);">Nuestros Expertos Certificados</h3>
-        <p style="text-align: center; color: #666; margin-bottom: 2rem;">Profesionales listos para transformar tu hogar.</p>
+<div class="seccion-contenedor" style="margin-top: 0;">
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 5rem;">
         
-        <div class="grid-servicios">
-            {% for experto in expertos %}
-            <div class="tarjeta-servicio" style="border-top: 4px solid var(--primary-color);">
-                <h4 style="margin-bottom: 0.5rem;">👤 {{ experto.nombre }}</h4>
-                <p style="color: #2c3e50; font-weight: 600; margin-bottom: 0.2rem;">{{ experto.profesion }}</p>
-                <p class="small text-muted">📍 {{ experto.ubicacion }}</p>
-                <hr>
-                <p class="small" style="font-style: italic; min-height: 60px;">"{{ experto.proposito }}"</p>
-                <a href="mailto:{{ experto.correo }}" class="btn-contacto" style="padding: 8px 15px; font-size: 0.9rem; text-decoration: none; display: inline-block;">
-                    Contactar Experto
-                </a>
-            </div>
-            {% else %}
-            <div style="grid-column: 1 / -1; text-align: center; padding: 2rem;">
-                <p class="text-muted">Actualmente estamos buscando nuevos expertos para unirse a nuestra red.</p>
-            </div>
-            {% endfor %}
+        <div style="flex: 1; min-width: 300px; background-color: var(--bg-secundario); padding: 3rem; border-radius: 12px; border-top: 4px solid var(--acento);">
+            <h3 style="color: var(--texto-claro); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                <i class='bx bx-map' style="color: var(--acento); font-size: 1.8rem;"></i> Ubicación y Contacto
+            </h3>
+            <p style="margin-bottom: 10px; color: var(--texto-claro);"><strong style="color: var(--acento);">Dirección:</strong> Av. Alberto Zambrano, Puyo, Pastaza (Frente a la UEA).</p>
+            <p style="margin-bottom: 10px; color: var(--texto-claro);"><strong style="color: var(--acento);">WhatsApp:</strong> +593 99 999 9999</p>
+            <p style="color: var(--texto-claro);"><strong style="color: var(--acento);">Horario:</strong> Lunes a Viernes, 08:00 - 18:00</p>
         </div>
-    </section>
 
-    <section class="informacion-interactiva" style="margin-top: 4rem;">
-        <div class="tarjeta-servicio" style="width: 100%; text-align: left; padding: 3rem;">
-            <h3 style="color: var(--primary-color); text-align: left; margin-bottom: 1.5rem;">📍 Ubicación y Contacto</h3>
-            <p><strong>Dirección:</strong> Av. Alberto Zambrano, Puyo, Pastaza (Frente a la UEA).</p>
-            <p><strong>WhatsApp:</strong> +593 99 999 9999</p>
-            <p><strong>Horario:</strong> Lunes a Viernes, 08:00 - 18:00</p>
+        <div style="flex: 1; min-width: 300px; background-color: var(--bg-secundario); padding: 3rem; border-radius: 12px; border-top: 4px solid #10b981; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+            <h3 style="color: var(--texto-claro); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                <i class='bx bx-support' style="color: #10b981; font-size: 1.8rem;"></i> ¿Necesitas asistencia técnica?
+            </h3>
+            <p style="color: var(--texto-mutado); margin-bottom: 1.5rem;">Nuestro equipo de soporte está siempre listo para ayudarte a configurar tu hogar o resolver problemas con la plataforma.</p>
+            <a href="mailto:Easyhomesoporte@gmail.com" class="btn-nav" style="background-color: #10b981; color: white; text-decoration: none; padding: 12px 25px; display: inline-flex; align-items: center; gap: 8px;">
+                <i class='bx bx-envelope'></i> Enviar correo a Soporte
+            </a>
         </div>
-    </section>
+    </div>
+</div> 
 
-    <section class="soporte-contacto">
-        <h3>¿Necesitas asistencia técnica?</h3>
-        <p>Nuestro equipo de soporte está siempre listo para ayudarte a configurar tu hogar.</p>
-        <a href="mailto:Easyhomesoporte@gmail.com" class="btn-contacto">✉️ Enviar correo a Soporte</a>
-    </section>
 {% endblock %}
