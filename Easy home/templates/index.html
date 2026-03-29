@@ -139,10 +139,10 @@
     <h1>Encuentra al experto <span>ideal</span></h1>
     <p>Domótica, electricidad, plomería y remodelaciones. Todo para que tu hogar funcione a la perfección.</p>
     
-    <div class="search-bar">
-        <input type="text" placeholder="Ej. Instalar cámaras, electricista, reparar tubería...">
-        <button><i class='bx bx-search'></i> Buscar</button>
-    </div>
+    <form action="{{ url_for('buscar_experto') }}" method="GET" class="search-bar">
+        <input type="text" name="q" placeholder="Ej. Instalar cámaras, electricista, reparar tubería..." required>
+        <button type="submit"><i class='bx bx-search'></i> Buscar</button>
+    </form>
 </section>
 
 <div class="seccion-contenedor">
@@ -210,5 +210,150 @@
         </div>
     </div>
 </div> 
+
+<style>
+    /* El botón flotante */
+    .btn-flotante {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: var(--acento);
+        color: white;
+        border-radius: 50px;
+        padding: 15px 25px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        box-shadow: 0 10px 20px rgba(0, 168, 255, 0.4);
+        cursor: pointer;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: none;
+    }
+
+    .btn-flotante:hover {
+        transform: translateY(-5px);
+        background-color: var(--acento-hover);
+        box-shadow: 0 15px 25px rgba(0, 168, 255, 0.6);
+    }
+
+    /* El contenedor del panel oculto por defecto */
+    .panel-agente-custom {
+        position: fixed;
+        bottom: 90px; /* Queda justo arriba del botón */
+        right: 30px;
+        width: 380px;
+        background-color: var(--bg-secundario);
+        border: 1px solid var(--borde);
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        z-index: 1001;
+        /* Estado inicial oculto */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+    }
+
+    /* Clase que se activa con JS para mostrar el panel */
+    .panel-agente-custom.activo {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .panel-header-custom {
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--borde);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(90deg, var(--bg-secundario) 0%, rgba(0, 168, 255, 0.1) 100%);
+        border-radius: 15px 15px 0 0;
+    }
+
+    .panel-header-custom h5 {
+        margin: 0;
+        color: var(--texto-claro);
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-cerrar-custom {
+        background: none;
+        border: none;
+        color: var(--texto-claro);
+        font-size: 1.8rem;
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    .panel-body-custom {
+        padding: 20px;
+    }
+
+    .paso-agente {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        gap: 15px;
+    }
+
+    .paso-agente i {
+        font-size: 2rem;
+        color: var(--acento);
+    }
+</style>
+
+<button type="button" class="btn-flotante" onclick="toggleAgente()">
+    <i class='bx bx-bot' style="font-size: 1.5rem;"></i> ¿Cómo funciona?
+</button>
+
+<div class="panel-agente-custom" id="miPanelAgente">
+    <div class="panel-header-custom">
+        <h5><i class='bx bx-bot' style="color: var(--acento); font-size: 1.5rem;"></i> Agente Easy Home</h5>
+        <button class="btn-cerrar-custom" onclick="toggleAgente()">&times;</button>
+    </div>
+    <div class="panel-body-custom">
+        <p style="margin-bottom: 2rem; color: var(--texto-mutado);">
+            Encontrar al experto ideal para tu hogar es muy sencillo. Sigue estos 3 pasos:
+        </p>
+
+        <div class="paso-agente">
+            <i class='bx bx-search-alt'></i>
+            <div>
+                <h6 style="font-weight: bold; color: var(--texto-claro);">1. Busca lo que necesitas</h6>
+                <p style="color: var(--texto-mutado); font-size: 0.9rem; margin: 0;">Usa la barra principal para escribir el servicio que buscas.</p>
+            </div>
+        </div>
+
+        <div class="paso-agente">
+            <i class='bx bx-map-pin'></i>
+            <div>
+                <h6 style="font-weight: bold; color: var(--texto-claro);">2. Elige al experto más cercano</h6>
+                <p style="color: var(--texto-mutado); font-size: 0.9rem; margin: 0;">Te mostraremos a los profesionales calificados cerca de ti.</p>
+            </div>
+        </div>
+
+        <div class="paso-agente">
+            <i class='bx bx-message-square-detail'></i>
+            <div>
+                <h6 style="font-weight: bold; color: var(--texto-claro);">3. Solicita el servicio</h6>
+                <p style="color: var(--texto-mutado); font-size: 0.9rem; margin: 0;">Haz clic en "Solicitar Servicio", envía un mensaje y listo.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleAgente() {
+        const panel = document.getElementById('miPanelAgente');
+        panel.classList.toggle('activo');
+    }
+</script>
 
 {% endblock %}

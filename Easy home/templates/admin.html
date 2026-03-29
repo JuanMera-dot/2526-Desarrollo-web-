@@ -7,6 +7,19 @@
         <p class="eslogan">Gestión de Inventario: Tienda, Suministros e Instrumentos.</p>
     </div>
 
+    <div class="mb-4">
+        <h2 class="text-white">Panel de Control</h2>
+        <div class="d-flex flex-wrap gap-2 mt-2">
+            <a href="{{ url_for('generar_reporte_pdf') }}" class="btn btn-danger shadow-sm">
+                <i class='bx bxs-file-pdf'></i> Descargar Reporte de colaboradores (PDF)
+            </a>
+            
+            <a href="{{ url_for('generar_reporte_productos_pdf') }}" class="btn btn-success shadow-sm">
+                <i class='bx bxs-spreadsheet'></i> Descargar Reporte de Inventario (PDF)
+            </a>
+        </div>
+    </div>
+
     <div class="tarjeta-servicio" style="padding: 40px; margin-bottom: 50px;">
         <h3 style="color: var(--primary-color); margin-bottom: 25px;">📦 Añadir Nuevo Item</h3>
         
@@ -66,7 +79,7 @@
                            class="btn btn-sm btn-danger" 
                            style="text-decoration: none; padding: 5px 10px; border-radius: 5px;"
                            onclick="return confirm('¿Estás seguro de eliminar este producto de todo el sistema?')">
-                           Borrar
+                            Borrar
                         </a>
                     </td>
                 </tr>

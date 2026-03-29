@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .contactar-container {
+        max-width: 600px;
+        margin: 5rem auto;
+        background-color: var(--bg-secundario);
+        border: 1px solid var(--borde);
+        border-radius: 12px;
+        padding: 3rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .experto-perfil {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--borde);
+    }
+
+    .avatar-grande {
+        width: 80px;
+        height: 80px;
+        background-color: var(--bg-principal);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        color: var(--acento);
+        border: 2px solid var(--acento);
+        margin: 0 auto 1rem auto;
+    }
+
+    .experto-perfil h2 { color: var(--texto-claro); margin-bottom: 0.5rem; }
+    .experto-perfil p { color: var(--texto-mutado); margin-bottom: 5px; }
+
+    .form-contacto label {
+        color: var(--texto-claro);
+        font-weight: bold;
+        margin-bottom: 0.8rem;
+        display: block;
+        font-size: 1.1rem;
+    }
+
+    .form-contacto textarea {
+        width: 100%;
+        background-color: var(--bg-principal);
+        border: 1px solid var(--borde);
+        color: var(--texto-claro);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        resize: vertical;
+        min-height: 150px;
+    }
+
+    .form-contacto textarea:focus {
+        outline: none;
+        border-color: var(--acento);
+        box-shadow: 0 0 10px rgba(0, 168, 255, 0.2);
+    }
+
+    .btn-enviar {
+        background-color: var(--acento);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        transition: 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-enviar:hover {
+        background-color: var(--acento-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 168, 255, 0.4);
+    }
+
+    .btn-cancelar {
+        text-align: center;
+        display: block;
+        margin-top: 1.5rem;
+        color: var(--texto-mutado);
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn-cancelar:hover {
+        color: var(--texto-claro);
+    }
+</style>
+
+<div class="contactar-container">
+    <div class="experto-perfil">
+        <div class="avatar-grande"><i class='bx bx-user'></i></div>
+        <h2>{{ experto.nombre }}</h2>
+        <p><i class='bx bx-briefcase-alt-2'></i> {{ experto.profesion }}</p>
+        <p><i class='bx bx-map' style="color: #ef4444;"></i> {{ experto.ubicacion }}</p>
+    </div>
+
+    <form method="POST" class="form-contacto">
+        <label for="mensaje"><i class='bx bx-message-square-detail'></i> Describe lo que necesitas:</label>
+        <textarea name="mensaje" id="mensaje" placeholder="Ej. Hola, necesito que me ayudes con la instalación de unas cámaras de seguridad este fin de semana. Mi dirección es..." required></textarea>
+        
+        <button type="submit" class="btn-enviar">
+            <i class='bx bx-send'></i> Enviar Solicitud
+        </button>
+        <a href="{{ url_for('expertos') }}" class="btn-cancelar">Cancelar y volver al directorio</a>
+    </form>
+</div>
+
+{% endblock %}
