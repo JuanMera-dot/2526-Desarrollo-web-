@@ -1,4 +1,6 @@
-flask
-flask-sqlalchemy
+Flask
+Flask-SQLAlchemy
+fpdf
 mysql-connector-python
 gunicorn
+werkzeug
