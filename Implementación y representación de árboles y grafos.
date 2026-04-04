@@ -1,0 +1,186 @@
+using System;
+using System.Collections.Generic;
+
+namespace PracticaGrafos
+{
+    //Representa una arista (el vuelo entre ciudades)
+    class Vuelo
+    {
+        public string Destino { get; set; }
+        public int Precio { get; set; }
+
+        public Vuelo(string destino, int precio)
+        {
+            Destino = destino;
+            Precio = precio;
+        }
+    }
+
+    // Representa la estructura de datos no lineal
+    class Grafo
+    {
+        // Lista de adyacencia usando un Diccionario
+        private Dictionary<string, List<Vuelo>> nodos = new Dictionary<string, List<Vuelo>>();
+
+        // Agrega una ciudad si no existe en el grafo
+        public void AgregarCiudad(string ciudad)
+        {
+            if (!nodos.ContainsKey(ciudad))
+            {
+                nodos[ciudad] = new List<Vuelo>();
+            }
+        }
+
+        // Crea la conexión dirigida entre dos ciudades
+        public void AgregarVuelo(string origen, string destino, int precio)
+        {
+            AgregarCiudad(origen);
+            AgregarCiudad(destino);
+            nodos[origen].Add(new Vuelo(destino, precio));
+        }
+
+        // Muestra la estructura del grafo en consola
+        public void MostrarVuelos()
+        {
+            Console.WriteLine("\n--- ESTRUCTURA DEL GRAFO: VUELOS DISPONIBLES ---");
+            foreach (var nodo in nodos)
+            {
+                Console.Write($"Desde {nodo.Key}: ");
+                if (nodo.Value.Count == 0)
+                {
+                    Console.WriteLine("Sin vuelos directos de salida.");
+                    continue;
+                }
+
+                foreach (var vuelo in nodo.Value)
+                {
+                    Console.Write($"[{vuelo.Destino} - ${vuelo.Precio}]  ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        //Algoritmo de Dijkstra para el camino más corto
+        public void EncontrarVueloMasBarato(string inicio, string fin)
+        {
+            if (!nodos.ContainsKey(inicio) || !nodos.ContainsKey(fin))
+            {
+                Console.WriteLine("Error: Una o ambas ciudades no existen en el sistema.");
+                return;
+            }
+
+            var distancias = new Dictionary<string, int>();
+            var previos = new Dictionary<string, string>();
+            var noVisitados = new List<string>();
+
+            // Inicializamos las distancias al infinito
+            foreach (var ciudad in nodos.Keys)
+            {
+                distancias[ciudad] = int.MaxValue;
+                previos[ciudad] = null;
+                noVisitados.Add(ciudad);
+            }
+
+            distancias[inicio] = 0;
+
+            while (noVisitados.Count > 0)
+            {
+                // Ordenamos para sacar siempre el nodo más cercano
+                noVisitados.Sort((x, y) => distancias[x].CompareTo(distancias[y]));
+                string actual = noVisitados[0];
+                noVisitados.Remove(actual);
+
+                if (actual == fin) break; // Llegamos al destino
+                if (distancias[actual] == int.MaxValue) break; // No hay forma de llegar
+
+                // Evaluamos los vuelos desde la ciudad actual
+                foreach (var vuelo in nodos[actual])
+                {
+                    int distanciaAlternativa = distancias[actual] + vuelo.Precio;
+                    
+                    if (distanciaAlternativa < distancias[vuelo.Destino])
+                    {
+                        distancias[vuelo.Destino] = distanciaAlternativa;
+                        previos[vuelo.Destino] = actual;
+                    }
+                }
+            }
+
+            // Reconstruimos la ruta para mostrarla
+            if (distancias[fin] == int.MaxValue)
+            {
+                Console.WriteLine($"\nLo sentimos, no hay rutas disponibles entre {inicio} y {fin}.");
+                return;
+            }
+
+            List<string> ruta = new List<string>();
+            string paso = fin;
+            while (paso != null)
+            {
+                ruta.Insert(0, paso);
+                paso = previos[paso];
+            }
+
+            Console.WriteLine($"\n--- RESULTADO DE LA BÚSQUEDA ---");
+            Console.WriteLine($"Ruta más barata: {inicio} hacia {fin}");
+            Console.WriteLine($"Costo total: ${distancias[fin]}");
+            Console.WriteLine("Escalas de viaje: " + string.Join(" -> ", ruta));
+        }
+    }
+
+    //Menú principal de interacción
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Grafo redVuelos = new Grafo();
+
+            // Base de datos simulada en memoria
+            redVuelos.AgregarVuelo("Quito", "Guayaquil", 60);
+            redVuelos.AgregarVuelo("Quito", "Cuenca", 85);
+            redVuelos.AgregarVuelo("Quito", "Manta", 70);
+            redVuelos.AgregarVuelo("Guayaquil", "Cuenca", 40);
+            redVuelos.AgregarVuelo("Guayaquil", "Loja", 55);
+            redVuelos.AgregarVuelo("Manta", "Guayaquil", 30);
+            redVuelos.AgregarVuelo("Cuenca", "Loja", 25);
+
+            int opcion = 0;
+
+            do
+            {
+                Console.WriteLine("\n=== SISTEMA INTELIGENTE DE VUELOS ===");
+                Console.WriteLine("1. Consultar todos los vuelos (Visualizar Grafo)");
+                Console.WriteLine("2. Encontrar el vuelo más barato");
+                Console.WriteLine("3. Salir");
+                Console.Write("Seleccione una opción: ");
+                
+                if (int.TryParse(Console.ReadLine(), out opcion))
+                {
+                    switch (opcion)
+                    {
+                        case 1:
+                            redVuelos.MostrarVuelos();
+                            break;
+                        case 2:
+                            Console.Write("Ingrese ciudad de origen (Ej. Quito): ");
+                            string origen = Console.ReadLine();
+                            Console.Write("Ingrese ciudad de destino (Ej. Loja): ");
+                            string destino = Console.ReadLine();
+                            redVuelos.EncontrarVueloMasBarato(origen, destino);
+                            break;
+                        case 3:
+                            Console.WriteLine("Finalizando el programa...");
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida. Intente de nuevo.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Por favor, ingrese un número.");
+                }
+            } while (opcion != 3);
+        }
+    }
+}
